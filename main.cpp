@@ -1,124 +1,92 @@
 #include <iostream>
-#include <cstdlib>
+#include <conio.h>
 #include <string>
-#include <sstream>
-#include <vector>
+#include <stdlib.h>
 
 using namespace std;
-
-#define STUDENTS_COUNT 10
-
-class Student {
-	public:
-		string studentNo;
-		string studentName;
-		string studentSurname;
-		string studentStatus;
-			
-		void setStudentNo(string studentNo) {
-			this->studentNo = studentNo;
-		}
-		
-		string getStudentNo() {
-			return this->studentNo;
-		}
-		
-		void setStudentName(string studentName) {
-			this->studentName = studentName;
-		}
-		
-		string getStudentName() {
-			return this->studentName;
-		}
-		
-		void setStudentSurname(string studentSurname) {
-			this->studentSurname = studentSurname;
-		}
-		
-		string getStudentSurname() {
-			return this->studentSurname;
-		}
-		
-		
-		void setStudentStatus(string studentStatus) {
-			this->studentStatus = studentStatus;
-		}
-		
-		string getStudentStatus() {
-			return this->studentStatus;
-		}
-		
-		
-};
-
-string getRandomStudentNumber() {
-	ostringstream ss;
-	int randomNumber = rand() % 2000 + 37000;
+int ilosc = 1;
+struct studenci
+{
+	string imie;
+	string nazwisko;
+	private long long pesel;
+	long long indeks;
+	string adres;
+	int rok;
+	} baza [2];
 	
-	ss << randomNumber;
-	
-	return ss.str();
+	void dodaj()
+{
+    for( int i = 0; i < ilosc; i++ )
+    {
+        cout << "Podaj imiê " << i + 1 << "-ego studenta: ";
+        cin >> baza[ i ].imie;
+        cout << "Podaj nazwisko " << i + 1 << "-ego studenta: ";
+        cin >> baza[ i ].nazwisko;
+        cout << "Podaj PESEL " << i + 1 << "-ego studenta: ";
+        cin >> baza[ i ].pesel;
+        cout << "Podaj nr indeksu " << i + 1 << "-ego studenta: ";
+        cin >> baza[ i ].indeks;
+        cout << "Podaj adres " << i + 1 << "-ego studenta: ";
+        cin >> baza[ i ].adres;
+        cout << "Podaj rok " << i + 1 << "-ego studenta: ";
+        cin >> baza[ i ].rok;
+        
+    }
 }
 
-string getRandomStudentName() {
-	string name[3] = {"Jan", "Maciek", "Andrzej"};
-	int losuj = rand() % 3;
-	
-	string randomStudentName = name[losuj];
-	
-	return randomStudentName;
-
+void wyswietl()
+{
+    for( int i = 0; i < ilosc; i++ )
+    {
+    	cout << "NR indeksu; PESEL; Nazwisko , Imiê; Rok ; Adres\n";
+        cout << baza[ i ].indeks << "; ";
+        cout << baza[ i ].pesel << "; ";
+        cout << baza[ i ].nazwisko << "; ";
+        cout << baza[ i ].imie << "; ";
+        cout << baza[ i ].rok << "; ";
+        cout << "zamieszka³y: " << baza[ i ].adres << endl;
+    }
 }
 
-string getRandomStudentSurname(){
-	string surname[3] = {"Grzyb", "Podgrzyb", "Nadgrzyb"};
-	int losuj = rand() % 3;
-	
-	string randomStudentSurname = surname[losuj];
-	
-	return randomStudentSurname;
-}
-
-string getrandomStudentStatus(){
-	string status[2] = {"1", "0"};
-	int losuj = rand() % 2;
-	
-	string randomStudentStatus = status[losuj];
-	
-	return randomStudentStatus;
-}
-int main() {
-	vector<Student> students;
-	
-	for(int i = 0; i < STUDENTS_COUNT; i++) {
-		Student student;
-		
-		student.setStudentNo(getRandomStudentNumber());
-		student.setStudentName(getRandomStudentName());
-		student.setStudentSurname(getRandomStudentSurname());
-		student.setStudentStatus(getrandomStudentStatus());
-		
-		students.push_back(student);
+public 
+	void setPesel(string pesel){
+		if(){
+			this -> pesel = pesel;
+		}
 	}
+
+
+int main()
+{
+	system("chcp 1250"); 
+	system("CLS");
+	cout << "Program na zaliczenie";
 	
-	
-	cout  << "Students group have been filled." << endl << endl;
-	
-	
-	
-	for(int i = 0; i < students.size(); i++) {
-		Student student = students.at(i);
+	while (1)
+	{
+				
+        cout << "\n\n[1] Dodaj studenta \n[2] Lista studentów \n[3] Zakoñcz" << endl;
+        int choice;
+        cout << "\nTwoj wybor to : ";
+        cin >> choice;
 		
-		cout << student.getStudentNo()<<" " << student.getStudentName()<< " " << student.getStudentSurname()<< " " << student.getStudentStatus() << endl;
+		if(choice == 1)
+	    {
+	        dodaj();
+	    }
+
+ 		if(choice == 2)
+	    {
+	        wyswietl();
+	    }
+	    
+		if(choice == 3)
+	    {
+	        exit( 0 );
+	    }
 	}
-	
 
-	
-
-	
-	
-	
-	return 0;
+	system( "PAUSE" );
+    return 0;
 }
-
-
